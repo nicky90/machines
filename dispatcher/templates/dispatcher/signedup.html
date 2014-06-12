@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dispatcher/bootstrap.min.css' %}">
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <h3>Sign up Success!</h3>
+    <p>the page is going to jump to the <a href="{% url 'dispatcher:index' %}">home</a> page</p>
+    <p>or you can <a href="{% url 'dispatcher:signin' %}">log in</a> here.</p>
+    <form name="jumpform" action="{% url 'dispatcher:index' %}" method="get"></form>
+    <script>
+      setTimeout(function(){document.jumpform.submit();}, 3000);
+<!--      document.jumpform.submit(); -->
+    </script>
+  </body>
+</html>

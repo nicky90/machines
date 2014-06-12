@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dispatcher/bootstrap.min.css' %}">
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="height: 50px">
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <form class="form-horizontal" role="form" action="{% url 'dispatcher:register' %}" method="post">
+          {% csrf_token %}
+            <div class="form-group">
+              <div class="row">
+                <input type="text" name="userName" class="form-control" id="userName" placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <input type="email" name="userEmail" class="form-control" id="userEmail" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <input type="password" name="userPasswd" class="form-control" id="userPassword" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary pull-right">Sign up</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div><!-- container -->
+  </body>
+</html>

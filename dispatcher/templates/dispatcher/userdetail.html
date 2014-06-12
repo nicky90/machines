@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dispatcher/bootstrap.min.css' %}">
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <h2>{{ user.name }}</h2>now owns the following machine(s):
+    <a href="mailto:{{ user.email }}">Mail to me</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Machine</th>
+          <th>Arch</th>
+          <th>OS</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Owner</th>
+          <th>Note</th>
+          <th>LendTo</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for machine in user.machine_set.all() %}
+        <tr>
+          <td><a href="{{ machine.detail }}">{{ machine.hostname }}</a></td>
+          <td>{{ machine.arch }}</td>
+          <td>{{ machine.os }}</td>
+          <td>{{ machine.location }}</td>
+          <td>{{ machine.status }}</td>
+          <td>{{ machine.owner }}</td>
+          <td>{{ machine.note }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

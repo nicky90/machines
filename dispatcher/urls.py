@@ -1,0 +1,14 @@
+from django.conf.urls import patterns, url
+
+from dispatcher import views
+
+urlpatterns = patterns('',
+    url(r'^$', views.index, name='index'),
+    url(r'^signin/$', views.signin, name='signin'),
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^login/$', views.login, name='login'),
+    url(r'^lend/$', views.lend, name='lend'),
+    url(r'^userdetail/$', views.userdetail, name='userdetail'),
+    url(r'^machinedetail/$', views.machinedetail, name='machinedetail'),
+)

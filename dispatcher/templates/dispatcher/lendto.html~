@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dispatcher/bootstrap.min.css' %}">
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="#">{{ user.name }}</a></li>
+          <li><a href="#">logout</a></li>
+        </ul>
+        <h3 class="text-muted">HCTS Team Machine Board</h3>
+      </div>
+      <div class="row" style="height: 50px">
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <form class="form-horizontal" role="form" action="{% url 'dispatcher:login' %}" method="post">
+          {% csrf_token %}
+            <div class="form-group">
+              <div class="row">
+                <select name="hostname" class="form-control" id="hostname">
+                  <option selected>{{ machine.hostname }}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <input name="arch" class="form-control" id="arch" value={{ machine.arch }} />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <input name="os" class="form-control" id="os" value={{ machine.os }} />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <input name="os" class="form-control" id="os" value={{ machine.os }} />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <select name="recver" class="form-control" id="recver">
+                  {% for recver in user_list %}
+                  <option>{{ recver.name }}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <button type="submit" class="btn btn-primary">Commit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div><!-- container -->
+  </body>
+</html>

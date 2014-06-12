@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HCTS Team Machine Board</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dispatcher/bootstrap.min.css' %}">
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="#">{{ user.name }}</a></li>
+          <li><a href="#">logout</a></li>
+        </ul>
+        <h3 class="text-muted">HCTS Team Machine Board</h3>
+      </div>
+      <br />
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Machine</th>
+            <th>Arch</th>
+            <th>OS</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Owner</th>
+            <th>Note</th>
+            <th>Opt</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for machine in machine_list %}
+          <tr>
+            <td><a href="#">{{ machine.hostname }}</a></td>
+            <td>{{ machine.arch }}</td>
+            <td>{{ machine.os }}</td>
+            <td>{{ machine.location }}</td>
+            <td>{{ machine.status }}</td>
+            <td>{{ machine.owner }}</td>
+            <td>{{ machine.note }}</td>
+            {% ifequal machine.owner user %}
+<!--            <td><input type="button" value="LENDTO" /></td>   -->
+            <td><a href="{% url 'dispatcher:lend' {'user':user,'machine':machine} %}">LendTo</a></td>
+            {% else %}
+<!--            <td><input type="button" value="Mailto" /></td>  -->
+            <td><a href="mailto:{{ user.email }}">Mailto</a></td>
+            {% endifequal %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+     
+      <div class="footer">
+        <p>&copy; HCTS Team 2014 <span>Contact us: </span><span><a href="mailto:nick_chiu@163.com">Email</a></span></p>
+      </div>
+    </div><!-- container -->
+  </body>
+</html>
